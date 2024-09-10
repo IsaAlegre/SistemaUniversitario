@@ -1,0 +1,84 @@
+---
+import { alumno } from "../../request/alumno";
+import { alumnos } from "../../request/alumnos";
+---
+<meta charset="UTF-8">
+<body class="w-screen h-screen bg-gradient-to-b from-black to-blue-800 bg-no-repeat">
+  <div class="w-screen h-36 flex justify-between items-center p-10">
+    <h1 class="text-5xl font-light tracking-widest text-white">Sistema<br> Universitario</h1>
+    <h1 class="text-5xl font-light tracking-widest text-white">Sistema de Alumnos</h1>
+  </div>
+
+  <div class="w-screen h-vh flex items-center justify-around">
+    <div class="w-80 h-96 bg-purple-600 flex flex-col rounded-2xl m-10 items-center p-5 mt-24 text-white">
+      <h1 class="text-3xl mb-3">Datos del alumno</h1>
+
+      <div class="w-full flex items-start flex-col">
+        <div class="mb-3">
+          <h1 class="text-2xl">Nombre</h1>
+          <p class="text-xl">{alumno.nombre}</p>
+        </div>
+
+        <div class="mb-3">
+          <h1 class="text-2xl">Apellido</h1>
+          <p class="text-xl">{alumno.apellido}</p>
+        </div>
+
+        <div class="mb-3">
+          <h1 class="text-2xl">DNI</h1>
+          <p class="text-xl">{alumno.dni}</p>
+        </div>
+
+        <div class="mb-3">
+          <h1 class="text-2xl">Nro de Legajo</h1>
+          <p class="text-xl">{alumno.legajo}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Información de la Carrera -->
+    <div class="flex flex-col">
+      <div class="w-[600px] h-32 bg-purple-600 rounded-2xl p-6 flex flex-col mb-5 text-white">
+        <p class="text-xl mb-1">{alumno.carrera.nombre}</p>
+        <p>Coordinador: {alumno.carrera.coordinador.nombre}</p>
+        <p>Duración: {alumno.carrera.duracion}</p>
+      </div>
+
+      <!-- Inscripción a materias -->
+      <div class="w-56 h-10 bg-purple-600 flex items-center justify-evenly mb-4 p-4 rounded-2xl hover:scale-105 text-white">
+        <a href="/Alumno/Inscribirse">
+          <button>
+            Inscripción a materias
+          <button>
+        </a>
+        <img src="/public/plus-circle.svg" alt="mas">
+        
+      </div>
+
+      <!-- Lista de Alumnos -->
+      <div class="bg-purple-600 text-white rounded-lg p-8 shadow-lg w-[800px] mx-auto">
+        <h2 class="text-2xl font-semibold mb-4 text-center">LISTA DE ALUMNOS</h2>
+        <table class="w-full table-auto border-collapse bg-gray-800 text-white">
+          <thead class="bg-blue-700 text-white">
+            <tr>
+              <th class="border border-gray-600 px-4 py-2">Materias cursando</th>
+              <th class="border border-gray-600 px-4 py-2">Inasistencias</th>
+              <th class="border border-gray-600 px-4 py-2">Situacion</th>
+              <th class="border border-gray-600 px-4 py-2">Darse baja</th>  
+            </tr>
+          </thead>
+          <tbody>
+            {alumnos?.map((alumno) => (
+                <tr>
+
+                </tr>
+               ))}
+
+            <!-- Agrega más filas dinámicamente aquí -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>    
+</body>
+
