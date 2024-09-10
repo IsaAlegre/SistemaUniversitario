@@ -1,5 +1,11 @@
 ---
+<<<<<<< HEAD
 
+=======
+import { obtenerAlumnosConRelaciones } from "../../request";
+
+const alumnos: any = await obtenerAlumnosConRelaciones();
+>>>>>>> 8fbcf358a8b0ef92969cfecd52b383d7eb94e78d
 ---
 
 <html lang="es">
@@ -45,6 +51,22 @@
             {
               alumnos?.map((alumno) => (
                 <tr>
+<<<<<<< HEAD
+=======
+                  <th class="border border-gray-600 px-4 py-2">DNI</th>
+                  <th class="border border-gray-600 px-4 py-2">Nombre</th>
+                  <th class="border border-gray-600 px-4 py-2">Apellido</th>
+                  <th class="border border-gray-600 px-4 py-2">fecha de Nacimiento</th>
+                  <th class="border border-gray-600 px-4 py-2">Carrera</th>
+                   <th class="border border-gray-600 px-4 py-2">Condicion</th>
+                </tr>
+
+              </thead>
+              <tbody id="alumnosBody">
+                 {alumnos?.map((alumno) => (
+
+                <tr>
+>>>>>>> 8fbcf358a8b0ef92969cfecd52b383d7eb94e78d
                   <td class="border border-gray-600 px-4 py-2">{alumno.dni}</td>
                   <td class="border border-gray-600 px-4 py-2">
                     {alumno.nombre}

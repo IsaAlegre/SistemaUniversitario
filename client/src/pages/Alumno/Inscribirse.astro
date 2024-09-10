@@ -1,6 +1,8 @@
 ---
-import { alumno } from "../../request/alumno";
-import { alumnos } from "../../request/alumnos";
+import { obtenerAlumnosConRelaciones } from "../../request";
+
+const alumnos: any = await obtenerAlumnosConRelaciones();
+
 ---
 
 
@@ -21,11 +23,13 @@ import { alumnos } from "../../request/alumnos";
         </tr>
       </thead>
       <tbody>
-        {alumnos?.map((alumno) => (
-            <tr>
-
-            </tr>
-           ))}
+        {alumnos?.map((alumno) => {
+            return (
+            <tr class="bg-gray-700">
+              <td class="border border-gray-600 px-4 py-2">{alumno.nombre}</td>
+              </td>
+            )
+           })}
 
         <!-- Agrega más filas dinámicamente aquí -->
       </tbody>

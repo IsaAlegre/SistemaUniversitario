@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 
+<<<<<<< HEAD
 
 ---
 
@@ -8,3 +9,33 @@ import Layout from '../layouts/Layout.astro';
 	
 </Layout>
 
+=======
+---
+
+<Layout title="Welcome to Astro.">
+	<div class="w-screen h-80 bg-gradient-to-r from-blue-800 to-black flex items-center justify-start">
+		<div class="ml-20">
+			<h1 class="text-5xl font-light tracking-widest  mb-8 text-white"> Sistema <br> Universitario</h1>
+			<h2 class="text-2xl text-white">Como desea iniciar? </h2>
+		</div>
+	</div>
+	
+	<div class="w-screen h-96 flex items-center justify-around">
+		<button class="w-80 h-80 rounded-3xl bg-purple-600 flex flex-col items-center justify-center hover:scale-105">
+			<img class="w-40 h-40 mb-4" src="/public/profe.svg" alt="profe">
+			<h1 class="text-white">Sistema Profesores</h1>
+			<a href="/client/src/pages/DNIProfe"></a>
+		</button>
+	
+		<button class="w-80 h-80 rounded-3xl bg-blue-800 flex flex-col items-center justify-center hover:scale-105">
+			<img class="w-40 h-40 mb-4" src="/public/alumno.svg" alt="profe">
+			<h1 class="text-white">Sistema Alumnos</h1>
+		</button>
+	
+		<button class="w-80 h-80 rounded-3xl bg-gray-700 flex flex-col items-center justify-center hover:scale-105">
+			<img class="w-40 h-40 mb-4" src="/public/admin.svg" alt="profe">
+			<h1 class="text-white">Sistema Administrador</h1>
+		</button>
+	</div>
+</Layout>
+>>>>>>> 8fbcf358a8b0ef92969cfecd52b383d7eb94e78d
