@@ -1,22 +1,22 @@
 package com.alegre.becerra.benitez.student.system.coordinador;
 
 import com.alegre.becerra.benitez.student.system.carrera.Carrera;
-import jakarta.persistence.*;
+import jakarta.persistence.*;//Importa las anotaciones de JPA (Jakarta Persistence API), que permiten que la clase se mapee a una tabla de base de datos.
 
-import java.util.UUID;
-
-@Entity
-@Table(name= "coordinador")
+import java.util.UUID; //para identificar de manera única elementos en sistemas distribuidos o en bases de datos.
+//Sirve para manejar un identificador único para cada instancia de Coordinador.
+@Entity //Indica que la clase Coordinador es una entidad JPA, lo que significa que se mapea a una tabla en la base de datos.
+@Table(name= "coordinador") //nombre de la tabla q se va a mapear
 public class Coordinador {
-    @Id
-    @GeneratedValue
-    private UUID uuid = UUID.randomUUID();
+    @Id //indica q uuid es la clave primaria de la tabla
+    @GeneratedValue //La clave primaria será generada automáticamente.
+    private UUID uuid = UUID.randomUUID(); //identificador para cada coordi se inicia con un valor al azar
 
     private String nombre;
     private String apellido;
 
-
-    @OneToOne(mappedBy = "coordinador", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+//relacionaa un coordi con una sola carrera
+    @OneToOne(mappedBy = "coordinador", cascade = CascadeType.ALL, fetch = FetchType.LAZY) //relacion bidireccional, Las operaciones (como guardado, actualización o eliminación)
     private Carrera carrera;
 
     public Coordinador() {
@@ -28,11 +28,11 @@ public class Coordinador {
         this.carrera = carrera;
     }
 
-    public UUID getUuid() {
+    public UUID getUuid() { //get accede
         return uuid;
     }
 
-    public void setUuid(UUID uuid) {
+    public void setUuid(UUID uuid) { //modifica
         this.uuid = uuid;
     }
 
