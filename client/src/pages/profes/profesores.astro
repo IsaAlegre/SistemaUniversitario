@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema Universitario - Sistema Profesores</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-b from-blue-900 to-purple-600 min-h-screen flex justify-center items-center relative tracking-widest">
+
+    <div class="text-white absolute top-10 left-10">
+        <h1 class="text-4xl font-light">SISTEMA UNIVERSITARIO</h1>
+    </div>
+    <div class="text-white absolute top-10 right-10">
+        <h1 class="text-4xl font-light">SISTEMA PROFESORES</h1>
+    </div>
+
+    <div class="bg-purple-200 rounded-lg p-8 w-full max-w-4xl">
+        <div class="mb-6">
+            <h2 class="text-2xl font-semibold text-gray-800">Materias a cargo</h2>
+        </div>
+
+        <!-- Lista de materias -->
+        <div id="materias-list" class="mb-6">
+        </div>
+
+        <!-- Tabla para mostrar los detalles de la materia seleccionada -->
+        <table class="w-full bg-purple-500 text-white rounded-lg">
+            <thead>
+                <tr>
+                    <th class="p-3">Materia</th>
+                    <th class="p-3">Carrera</th>
+                    <th class="p-3">Cuatrimestre</th>
+                    <th class="p-3">Horas</th>
+                </tr>
+            </thead>
+            <tbody id="table-body">
+                <!-- Las filas se insertarán aquí mediante JavaScript -->
+            </tbody>
+        </table>
+
+        <div class="flex justify-between mt-6">
+            <!-- Botón Asistencias con un ID que se actualizará dinámicamente -->
+            <button id="asistencias-btn" class="bg-blue-500 text-white py-2 px-4 rounded-lg">Asistencias</button>
+            <button class="bg-blue-500 text-white py-2 px-4 rounded-lg" onclick="location.href='situacionFinal.html?materia=${index}'">Situación Final</button>
+        </div>
+    </div>
+
+    <script>
+        // Datos de ejemplo
+        const materias = [
+            { nombre: 'Matemáticas', carrera: 'Ingeniería', cuatrimestre: '1º', horas: 40 },
+            { nombre: 'Física', carrera: 'Ciencias', cuatrimestre: '2º', horas: 30 },
+            { nombre: 'Programación', carrera: 'Computación', cuatrimestre: '1º', horas: 45 }
+        ];
+
+        // Variable global para almacenar la materia seleccionada
+        let materiaSeleccionada = null;
+
+        // Función para cargar la lista de materias
+        function cargarMaterias() {
+            const materiasList = document.getElementById('materias-list');
+            materiasList.innerHTML = '';
+
+            materias.forEach((materia, index) => {
+                const btn = document.createElement('button');
+                btn.className = 'bg-blue-500 text-white py-2 px-4 rounded-lg mb-2 w-full text-left flex justify-between items-center';
+                btn.innerHTML = `
+                    <span>${materia.nombre}</span>
+                    <span class="text-sm">${materia.carrera} | ${materia.cuatrimestre} | ${materia.horas}h</span>
+                `;
+                btn.onclick = () => mostrarDetalles(materia, index);
+                materiasList.appendChild(btn);
+            });
+        }
+
+        // Función para mostrar los detalles de la materia seleccionada
+        function mostrarDetalles(materia, index) {
+            materiaSeleccionada = materia; // Guardar la materia seleccionada
+
+            const tableBody = document.getElementById('table-body');
+            tableBody.innerHTML = '';
+
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td class="p-3 text-center">${materia.nombre}</td>
+                <td class="p-3 text-center">${materia.carrera}</td>
+                <td class="p-3 text-center">${materia.cuatrimestre}</td>
+                <td class="p-3 text-center">${materia.horas}</td>
+            `;
+            tableBody.appendChild(row);
+
+            // Actualizar el enlace del botón de asistencias
+            const asistenciasBtn = document.getElementById('asistencias-btn');
+            asistenciasBtn.onclick = () => {
+                const url = `asistencias.html?materia=${index}`;
+                window.location.href = url;
+            };
+        }
+
+        // Cargar la lista de materias cuando el documento esté listo
+        document.addEventListener('DOMContentLoaded', cargarMaterias);
+    </script>
+</body>
+</html>

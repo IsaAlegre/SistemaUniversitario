@@ -1,6 +1,33 @@
+---
+import { alumno } from "../../request/alumno";
+import { alumnos } from "../../request/alumnos";
+---
+
+
 <meta charset="UTF-8">
 <body class="w-screen h-screen bg-gradient-to-b from-black to-blue-800 bg-no-repeat">
   <div class="w-screen h-36 flex justify-between items-center p-10">
     <h1 class="text-5xl font-light tracking-widest text-white">Sistema<br> Universitario</h1>
     <h1 class="text-5xl font-light tracking-widest text-white">Inscribirse a materias</h1>
+  </div>
+
+  <div class="bg-purple-600 text-white rounded-lg p-8 shadow-lg w-[800px] mx-auto">
+    <h2 class="text-2xl font-semibold mb-4 text-center">LISTA DE MATERIAS</h2>
+    <table class="w-full table-auto border-collapse bg-gray-800 text-white">
+      <thead class="bg-blue-700 text-white">
+        <tr>
+          <th class="border border-gray-600 px-4 py-2">Materias</th>
+          <th class="border border-gray-600 px-4 py-2"></th>
+        </tr>
+      </thead>
+      <tbody>
+        {alumnos?.map((alumno) => (
+            <tr>
+
+            </tr>
+           ))}
+
+        <!-- Agrega más filas dinámicamente aquí -->
+      </tbody>
+    </table>
   </div>

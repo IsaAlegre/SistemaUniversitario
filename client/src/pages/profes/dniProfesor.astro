@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sistema Universitario - Sistema Profesores</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="h-screen bg-gradient-to-b from-blue-900 to-purple-600 flex items-center justify-center">
+    <div class="text-center text-white w-full max-w-lg p-8 bg-purple-200 bg-opacity-10 rounded-lg shadow-lg">
+      <div class="mb-5">
+        <!-- Icono de usuario -->
+        <img src="/user-circle.svg" alt="Icono de usuario" class="w-24 h-24 mx-auto" />
+      </div>
+      <h1 class="mb-5 text-xl tracking-widest">Ingrese su DNI</h1>
+      <form action="#" method="POST" class="flex items-center justify-center">
+        <input
+          type="text"
+          placeholder="Ingrese su DNI"
+          class="p-3 border border-transparent rounded-l-lg focus:outline-none focus:ring-2 focus:ring-purple-500 text-black h-12"
+        />
+        <button class="p-3 bg-white text-purple-500 rounded-r-lg hover:bg-purple-100 border border-transparent border-l-0 h-12 flex items-center justify-center">
+          <!-- Icono de búsqueda -->
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="w-6 h-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M21 21l-4.35-4.35M17.5 10.5a7 7 0 11-14 0 7 7 0 0114 0z"
+            />
+          </svg>
+        </button>
+      </form>
+    </div>
+  </body>
+</html>
