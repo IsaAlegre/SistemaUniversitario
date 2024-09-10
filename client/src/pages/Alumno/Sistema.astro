@@ -1,6 +1,10 @@
 ---
-import { alumno } from "../../request/alumno";
-import { alumnos } from "../../request/alumnos";
+import { obtenerAlumnoConRelacionesPorDNI, obtenerAlumnosConRelaciones } from "../../request";
+
+const params = new URLSearchParams(window.location.search);
+const dni = params.get('dni');
+const alumno: any = await obtenerAlumnoConRelacionesPorDNI(dni);
+// const alumnos: any = await obtenerAlumnosConRelaciones();
 ---
 <meta charset="UTF-8">
 <body class="w-screen h-screen bg-gradient-to-b from-black to-blue-800 bg-no-repeat">
@@ -31,7 +35,7 @@ import { alumnos } from "../../request/alumnos";
 
         <div class="mb-3">
           <h1 class="text-2xl">Nro de Legajo</h1>
-          <p class="text-xl">{alumno.legajo}</p>
+          <p class="text-xl">{alumno.dni}</p>
         </div>
       </div>
     </div>
@@ -68,11 +72,11 @@ import { alumnos } from "../../request/alumnos";
             </tr>
           </thead>
           <tbody>
-            {alumnos?.map((alumno) => (
+            <!-- {alumnos?.map((alumno) => (
                 <tr>
 
                 </tr>
-               ))}
+               ))} -->
 
             <!-- Agrega más filas dinámicamente aquí -->
           </tbody>

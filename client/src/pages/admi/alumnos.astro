@@ -1,46 +1,9 @@
 ---
-import axios from "axios";
+import { obtenerAlumnosConRelaciones } from "../../request";
 
-const API_LINK = "http://localhost:8080";
-// Simula algunos datos de alumnos
-const alumnos = [
-  {
-    dni: "12345678",
-    nombre: "Juan",
-    apellido: "Pérez",
-    fechaDeNacimiento: "2000-01-01",
-    carrera: "Ingeniería",
-    estado: "regular"
-  },
-  {
-    dni: "87654321",
-    nombre: "María",
-    apellido: "García",
-    fechaDeNacimiento: "1999-05-15",
-    carrera: "Medicina",
-    estado: "promocionado"
-  }
-];
-//obtiene la lista de alummnos
-const getAllUsers = async () => {
-    try {
-    const response = await axios.get(`${API_LINK}/api/v1/alumnos`);
-         return response.data;
-    } catch (e) {
-       console.error("Error:", e.message);
-               return [];
-    }
-};
-const createUser = async (dataToSend) => {
-        try {
-            const response = await axios.post(`${API_LINK}/api/v1/alumnos`, dataToSend);
-            return response.data;
-        } catch (e) {
-            console.error("Error: ", e.message)
-        }
-
-};
+const alumnos: any = await obtenerAlumnosConRelaciones();
 ---
+
 <html lang="es">
   <head>
     <meta charset="UTF-8">
@@ -73,7 +36,7 @@ const createUser = async (dataToSend) => {
               <tbody id="alumnosBody">
                  {alumnos?.map((alumno) => (
 
-                <tr key={alumno.dni}>
+                <tr>
                   <td class="border border-gray-600 px-4 py-2">{alumno.dni}</td>
                   <td class="border border-gray-600 px-4 py-2">{alumno.nombre}</td>
                   <td class="border border-gray-600 px-4 py-2">{alumno.apellido}</td>

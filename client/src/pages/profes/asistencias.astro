@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Asistencia - Sistema Universitario</title>
-    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gradient-to-b from-blue-900 to-purple-600 min-h-screen flex justify-center items-center relative tracking-widest">
 
@@ -40,59 +39,5 @@
             </div>
         </form>
     </div>
-
-    <script>
-        // Datos de ejemplo (deberías reemplazar esto con datos reales de un servidor o base de datos)
-        const asistencias = {
-            0: [
-                { alumno: 'Juan Pérez', fecha: '2024-09-09', presente: true },
-                { alumno: 'Ana Gómez', fecha: '2024-09-09', presente: false }
-            ],
-            1: [
-                { alumno: 'Luis Fernández', fecha: '2024-09-09', presente: true },
-                { alumno: 'María López', fecha: '2024-09-09', presente: true }
-            ],
-            2: [
-                { alumno: 'Carlos Martín', fecha: '2024-09-09', presente: false },
-                { alumno: 'Laura Díaz', fecha: '2024-09-09', presente: true }
-            ]
-        };
-
-       const materias = {
-           0: 'Matemáticas',
-           1: 'Física',
-           2: 'Programación'
-       };
-
-        // Función para cargar las asistencias
-        function cargarAsistencias() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const materiaIndex = urlParams.get('materia');
-
-            if (materiaIndex !== null && asistencias[materiaIndex]) {
-                const tableBody = document.getElementById('asistencia-table-body');
-                const materiaTitulo = document.getElementById('materia-titulo');
-                tableBody.innerHTML = '';
-
-                // Establecer el título de la materia
-                materiaTitulo.textContent = `Asistencia de la materia: ${materias[materiaIndex]}`;
-
-                asistencias[materiaIndex].forEach(asistencia => {
-                    const row = document.createElement('tr');
-                    row.innerHTML = `
-                        <td class="p-3 text-center">${asistencia.alumno}</td>
-                        <td class="p-3 text-center">${asistencia.fecha}</td>
-                        <td class="p-3 text-center">
-                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600" ${asistencia.presente ? 'checked' : ''}>
-                        </td>
-                    `;
-                    tableBody.appendChild(row);
-                });
-            }
-        }
-
-        // Cargar las asistencias cuando el documento esté listo
-        document.addEventListener('DOMContentLoaded', cargarAsistencias);
-    </script>
 </body>
 </html>

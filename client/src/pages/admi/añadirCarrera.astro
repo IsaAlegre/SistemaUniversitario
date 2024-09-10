@@ -1,17 +1,5 @@
 ---
-import axios from "axios";
 
-const API_LINK = "http://localhost:8080";
-// Función para agregar una nueva carrera.
-const addCarrera = async (dataToSend) => {
-    try {
-        const response = await axios.post(`${API_LINK}/api/v1/carreras`, dataToSend);
-        return response.data;
-    } catch (e) {
-        console.error("Error: ", e.message);
-        throw new Error("Error: " + e.message);
-    }
-};
 ---
 <html lang="es">
   <head>
@@ -61,30 +49,5 @@ const addCarrera = async (dataToSend) => {
          <p id="responseError" class="mt-4 text-red-500 hidden">Ocurrió un error al añadir la carrera</p>
       </div>
     </div>
-   <script>
-           // Función para manejar el envío del formulario
-           async function handleSubmit(event) {
-               event.preventDefault();
-
-               const form = event.target;
-               const formData = new FormData(form);
-
-               const nombre = formData.get('nombre');
-
-               const dataToSend = { nombre };
-           try {
-                           const response = await axios.post(`${API_LINK}/api/v1/carreras`, dataToSend);
-                           document.getElementById('responseMessage').classList.remove('hidden');
-                           document.getElementById('responseError').classList.add('hidden');
-                           form.reset(); // Limpiar el formulario después de un envío exitoso
-                       } catch (error) {
-                           console.error("Error al añadir la carrera:", error.message);
-                           document.getElementById('responseMessage').classList.add('hidden');
-                           document.getElementById('responseError').classList.remove('hidden');
-                       }
-           }
-            // Añadir el event listener al formulario
-                   document.getElementById('anadirCarreraForm').addEventListener('submit', handleSubmit);
-               </script>
   </body>
 </html>
