@@ -1,0 +1,78 @@
+---
+
+---
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matricular Alumno</title>
+  </head>
+  <body class="bg-gradient-to-b from-gray-900 to-gray-700 min-h-screen flex items-center justify-center">
+    <div class="flex flex-col items-center w-full">
+
+        <div class="text-white absolute top-10 left-10">
+            <h1 class="text-4xl font-light tracking-widest">SISTEMA UNIVERSITARIO</h1>
+          </div>
+         <div class="text-white absolute top-10 right-10">
+            <h1 class="text-4xl font-light tracking-widest">SISTEMA ADMINISTRADOR</h1>
+          </div>
+      <div class="bg-gray-200 p-10 rounded-lg shadow-lg mt-10">
+        <h3 class="text-lg font-semibold text-center mb-6">Ingrese datos del Profesor</h3>
+        <form class="space-y-4">
+          <div>
+            <label class="block text-sm font-medium text-gray-700">Nombre:</label>
+            <input type="text" class="w-full border border-gray-300 p-2 rounded-md" placeholder="Nombre">
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700">Apellido:</label>
+            <input type="text" class="w-full border border-gray-300 p-2 rounded-md" placeholder="Apellido">
+          </div>
+          <div>
+                      <label class="block text-sm font-medium text-gray-700">DNI:</label>
+                      <input type="text" class="w-full border border-gray-300 p-2 rounded-md" placeholder="DNI">
+                    </div>
+           <div>
+               <label class="block text-sm font-medium text-gray-700">Seleccionar Materias</label>
+               <div class="mt-2 space-y-2">
+                 <div class="flex items-center">
+                   <input id="ingenieria" name="carreras[]" value="ingenieria" type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500">
+                   <label for="ingenieria" class="ml-2 block text-sm text-gray-700">Fisica</label>
+                 </div>
+
+                 <div class="flex items-center">
+                   <input id="arquitectura" name="carreras[]" value="arquitectura" type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500">
+                   <label for="arquitectura" class="ml-2 block text-sm text-gray-700">Algebra</label>
+                 </div>
+
+                 <div class="flex items-center">
+                   <input id="derecho" name="carreras[]" value="derecho" type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500">
+                   <label for="derecho" class="ml-2 block text-sm text-gray-700">Analisis I</label>
+                 </div>
+
+                 <div class="flex items-center">
+                   <input id="medicina" name="carreras[]" value="medicina" type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500">
+                   <label for="medicina" class="ml-2 block text-sm text-gray-700">Paradigmas</label>
+                 </div>
+
+                 <div class="flex items-center">
+                   <input id="administracion" name="carreras[]" value="administracion" type="checkbox" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500">
+                   <label for="administracion" class="ml-2 block text-sm text-gray-700">Programacion</label>
+                 </div>
+               </div>
+             </div>
+
+          <div class="flex space-x-4">
+            <button type="submit" class="bg-blue-600 text-white py-2 px-4 rounded mt-4 hover:bg-blue-700 transition duration-300 ease-in-out">
+              Matricular Profesor
+            </button>
+
+            <a href="/admi/profesores" class="bg-green-600 text-white text-center py-2 px-5 rounded mt-4 hover:bg-green-700 transition duration-300 ease-in-out">
+              Ver profesores
+            </a>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
