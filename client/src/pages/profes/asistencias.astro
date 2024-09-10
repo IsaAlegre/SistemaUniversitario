@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asistencia - Sistema Universitario</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-b from-blue-900 to-purple-600 min-h-screen flex justify-center items-center relative tracking-widest">
+
+    <!-- Título Sistema Universitario -->
+    <div class="text-white absolute top-10 left-10">
+        <h1 class="text-4xl font-light">SISTEMA UNIVERSITARIO</h1>
+    </div>
+
+    <!-- Título Sistema Profesores -->
+    <div class="text-white absolute top-10 right-10">
+        <h1 class="text-4xl font-light">SISTEMA PROFESORES</h1>
+    </div>
+
+    <div class="bg-purple-200 rounded-lg p-8 w-full max-w-4xl">
+        <!-- Título de la materia -->
+        <h2 id="materia-titulo" class="text-2xl font-semibold text-gray-800 mb-6">Asistencia de la materia</h2>
+
+        <form>
+            <table class="w-full bg-purple-500 text-white rounded-lg">
+                <thead>
+                    <tr>
+                        <th class="p-3">Alumnos</th>
+                        <th class="p-3">Fecha</th>
+                        <th class="p-3">Asistencia</th>
+                    </tr>
+                </thead>
+                <tbody id="asistencia-table-body">
+                    <!-- Las filas de asistencia se insertarán aquí mediante JavaScript -->
+                </tbody>
+            </table>
+            <div class="flex justify-center mt-6">
+                <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded-lg">Guardar Asistencia</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        // Datos de ejemplo (deberías reemplazar esto con datos reales de un servidor o base de datos)
+        const asistencias = {
+            0: [
+                { alumno: 'Juan Pérez', fecha: '2024-09-09', presente: true },
+                { alumno: 'Ana Gómez', fecha: '2024-09-09', presente: false }
+            ],
+            1: [
+                { alumno: 'Luis Fernández', fecha: '2024-09-09', presente: true },
+                { alumno: 'María López', fecha: '2024-09-09', presente: true }
+            ],
+            2: [
+                { alumno: 'Carlos Martín', fecha: '2024-09-09', presente: false },
+                { alumno: 'Laura Díaz', fecha: '2024-09-09', presente: true }
+            ]
+        };
+
+       const materias = {
+           0: 'Matemáticas',
+           1: 'Física',
+           2: 'Programación'
+       };
+
+        // Función para cargar las asistencias
+        function cargarAsistencias() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const materiaIndex = urlParams.get('materia');
+
+            if (materiaIndex !== null && asistencias[materiaIndex]) {
+                const tableBody = document.getElementById('asistencia-table-body');
+                const materiaTitulo = document.getElementById('materia-titulo');
+                tableBody.innerHTML = '';
+
+                // Establecer el título de la materia
+                materiaTitulo.textContent = `Asistencia de la materia: ${materias[materiaIndex]}`;
+
+                asistencias[materiaIndex].forEach(asistencia => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td class="p-3 text-center">${asistencia.alumno}</td>
+                        <td class="p-3 text-center">${asistencia.fecha}</td>
+                        <td class="p-3 text-center">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600" ${asistencia.presente ? 'checked' : ''}>
+                        </td>
+                    `;
+                    tableBody.appendChild(row);
+                });
+            }
+        }
+
+        // Cargar las asistencias cuando el documento esté listo
+        document.addEventListener('DOMContentLoaded', cargarAsistencias);
+    </script>
+</body>
+</html>
