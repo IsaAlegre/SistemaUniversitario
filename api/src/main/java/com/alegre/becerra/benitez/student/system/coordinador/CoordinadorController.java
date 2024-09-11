@@ -1,15 +1,15 @@
 package com.alegre.becerra.benitez.student.system.coordinador;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.beans.factory.annotation.Autowired;//Se utiliza para inyectar dependencias de forma automática.
+import org.springframework.http.ResponseEntity;//Representa las respuestas HTTP, permitiendo devolver objetos con códigos de estado HTTP.
+import org.springframework.web.bind.annotation.*;//Proporciona las anotaciones necesarias para definir endpoints REST.
 
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-@RestController
-@RequestMapping("/api/coordinadores")
+@RestController //gestiona las peticiones HTTP y devolverá respuestas en formato JSON
+@RequestMapping("/api/coordinadores") //url base
 public class CoordinadorController {
 
     private final CoordinadorService coordinadorService;
@@ -21,7 +21,7 @@ public class CoordinadorController {
 
     // Obtener todos los coordinadores
     @GetMapping
-    public List<Coordinador> getAllCoordinadores() {
+    public List<Coordinador> getAllCoordinadores() { 
         return coordinadorService.getAllCoordinadores();
     }
 

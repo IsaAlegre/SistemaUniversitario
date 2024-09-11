@@ -1,6 +1,8 @@
 ---
-import { matricularAlumno } from "../../request/alumno";
-const crearAlumnos = await matricularAlumno()
+import { crearAlumno } from "../../request"
+import { obtenerTodosLosAlumnos } from "../../request";
+const listaAlumno =await obtenerTodosLosAlumnos();
+const crearAlumnos = await crearAlumno();
 ---
 <html lang="es">
   <head>

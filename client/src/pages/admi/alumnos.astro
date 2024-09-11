@@ -1,11 +1,10 @@
 ---
-<<<<<<< HEAD
-
-=======
-import { obtenerAlumnosConRelaciones } from "../../request";
-
-const alumnos: any = await obtenerAlumnosConRelaciones();
->>>>>>> 8fbcf358a8b0ef92969cfecd52b383d7eb94e78d
+import { obtenerTodosLosAlumnos } from "../../request";
+import { actualizarAlumno } from "../../request";
+import { eliminarAlumno } from "../../request";
+const alumnos = await obtenerTodosLosAlumnos();
+const actualizar = await actualizarAlumno();
+const eliminar = await eliminarAlumno();
 ---
 
 <html lang="es">
@@ -40,55 +39,50 @@ const alumnos: any = await obtenerAlumnosConRelaciones();
               <th class="border border-gray-600 px-4 py-2">DNI</th>
               <th class="border border-gray-600 px-4 py-2">Nombre</th>
               <th class="border border-gray-600 px-4 py-2">Apellido</th>
-              <th class="border border-gray-600 px-4 py-2"
-                >fecha de Nacimiento</th
-              >
+              <th class="border border-gray-600 px-4 py-2">Fecha de Nacimiento</th>
               <th class="border border-gray-600 px-4 py-2">Carrera</th>
-              <th class="border border-gray-600 px-4 py-2">Condicion</th>
+              <th class="border border-gray-600 px-4 py-2">Condición</th>
+              <th class="border border-gray-600 px-4 py-2">Acciones</th>
             </tr>
           </thead>
           <tbody id="alumnosBody">
-            {
-              alumnos?.map((alumno) => (
-                <tr>
-<<<<<<< HEAD
-=======
-                  <th class="border border-gray-600 px-4 py-2">DNI</th>
-                  <th class="border border-gray-600 px-4 py-2">Nombre</th>
-                  <th class="border border-gray-600 px-4 py-2">Apellido</th>
-                  <th class="border border-gray-600 px-4 py-2">fecha de Nacimiento</th>
-                  <th class="border border-gray-600 px-4 py-2">Carrera</th>
-                   <th class="border border-gray-600 px-4 py-2">Condicion</th>
-                </tr>
-
-              </thead>
-              <tbody id="alumnosBody">
-                 {alumnos?.map((alumno) => (
-
-                <tr>
->>>>>>> 8fbcf358a8b0ef92969cfecd52b383d7eb94e78d
-                  <td class="border border-gray-600 px-4 py-2">{alumno.dni}</td>
-                  <td class="border border-gray-600 px-4 py-2">
-                    {alumno.nombre}
-                  </td>
-                  <td class="border border-gray-600 px-4 py-2">
-                    {alumno.apellido}
-                  </td>
-                  <td class="border border-gray-600 px-4 py-2">
-                    {alumno.fechaDeNacimiento}
-                  </td>
-                  <td class="border border-gray-600 px-4 py-2">
-                    {alumno.carrera}
-                  </td>
-                  <td class="border border-gray-600 px-4 py-2">
-                    {alumno.estado}
-                  </td>
-                </tr>
-              ))
-            }
+            ${alumnos.map((alumno) => `
+              <tr>
+                <td class="border border-gray-600 px-4 py-2">${alumno.dni}</td>
+                <td class="border border-gray-600 px-4 py-2">${alumno.nombre}</td>
+                <td class="border border-gray-600 px-4 py-2">${alumno.apellido}</td>
+                <td class="border border-gray-600 px-4 py-2">${alumno.fechaDeNacimiento}</td>
+                <td class="border border-gray-600 px-4 py-2">${alumno.carrera}</td>
+                <td class="border border-gray-600 px-4 py-2">${alumno.estado}</td>
+                <td class="border border-gray-600 px-4 py-2">
+                  <button onclick="handleEditar(${JSON.stringify(alumno)})" class="bg-blue-500 px-2 py-1 rounded text-white">Editar</button>
+                  <button onclick="handleEliminar(${alumno.dni})" class="bg-red-500 px-2 py-1 rounded text-white">Eliminar</button>
+                </td>
+              </tr>
+            `).join('')}
           </tbody>
         </table>
       </div>
+    </div>
+
+    <!-- Formulario de edición -->
+    <div id="formularioEdicion" style="display: none;">
+      <form onsubmit="handleActualizar(event)" class="bg-gray-800 p-4 rounded-lg text-white">
+        <h2 class="text-2xl font-semibold mb-4">Editar Alumno</h2>
+        <input type="hidden" id="dni" />
+        <label for="nombre">Nombre</label>
+        <input type="text" id="nombre" class="bg-gray-700 p-2 rounded mb-2 w-full" />
+        <label for="apellido">Apellido</label>
+        <input type="text" id="apellido" class="bg-gray-700 p-2 rounded mb-2 w-full" />
+        <label for="fechaDeNacimiento">Fecha de Nacimiento</label>
+        <input type="date" id="fechaDeNacimiento" class="bg-gray-700 p-2 rounded mb-2 w-full" />
+        <label for="carrera">Carrera</label>
+        <input type="text" id="carrera" class="bg-gray-700 p-2 rounded mb-2 w-full" />
+        <label for="estado">Estado</label>
+        <input type="text" id="estado" class="bg-gray-700 p-2 rounded mb-2 w-full" />
+        <button type="submit" class="bg-green-500 px-4 py-2 rounded">Guardar cambios</button>
+        <button type="button" onclick="document.getElementById('formularioEdicion').style.display='none'" class="bg-gray-500 px-4 py-2 rounded">Cancelar</button>
+      </form>
     </div>
   </body>
 </html>
