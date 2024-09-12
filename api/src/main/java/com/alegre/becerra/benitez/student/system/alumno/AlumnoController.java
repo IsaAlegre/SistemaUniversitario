@@ -1,5 +1,6 @@
 package com.alegre.becerra.benitez.student.system.alumno;
 
+import com.alegre.becerra.benitez.student.system.DTO.AlumnoDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -46,7 +47,7 @@ public class AlumnoController {
     }
 
     // Inscribir un alumno a una materia
-    @PostMapping("/{dni}/inscribir-materia/{materiaId}")
+        @PostMapping("/{dni}/inscribir-materia/{materiaId}")
     public ResponseEntity<Alumno> inscribirAMateria(@PathVariable String dni, @PathVariable UUID materiaId) {
         Alumno alumno = alumnoService.inscribirAMateria(dni, materiaId);
         return ResponseEntity.ok(alumno);

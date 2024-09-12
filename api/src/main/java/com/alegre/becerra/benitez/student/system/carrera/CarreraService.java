@@ -1,5 +1,6 @@
 package com.alegre.becerra.benitez.student.system.carrera;
 
+import com.alegre.becerra.benitez.student.system.DTO.CarreraDTO;
 import com.alegre.becerra.benitez.student.system.materia.Materia;
 import com.alegre.becerra.benitez.student.system.materia.MateriaRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 public class CarreraService {
@@ -21,9 +23,24 @@ public class CarreraService {
         this.materiaRepositorio = materiaRepositorio;
     }
 
+    //Mapeo
+    private CarreraDTO convertToDTO(Carrera carrera) {
+        CarreraDTO dto = new CarreraDTO();
+        dto.setUuid(carrera.getUuid());
+        dto.setNombre(carrera.getNombre());
+        dto.setDuracion(carrera.getDuracion());
+        if (carrera.getCoordinador() != null) {
+            dto.setCoordinadorNombre(carrera.getCoordinador().getNombre());
+        }
+        return dto;
+    }
+
+
     // Obtener todas las carreras
-    public List<Carrera> getAllCarreras() {
-        return carreraRepositorio.findAll();
+    public List<CarreraDTO> getAllCarreras() {
+        return carreraRepositorio.findAll().stream()
+                .map(this::convertToDTO)
+                .collect(Collectors.toList());
     }
 
     // Obtener una carrera por ID

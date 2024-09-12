@@ -1,5 +1,6 @@
 package com.alegre.becerra.benitez.student.system.coordinador;
 
+import com.alegre.becerra.benitez.student.system.DTO.CoordinadorDTO;
 import com.alegre.becerra.benitez.student.system.carrera.Carrera;
 import com.alegre.becerra.benitez.student.system.carrera.CarreraRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 public class CoordinadorService {
@@ -20,9 +22,23 @@ public class CoordinadorService {
         this.carreraRepositorio = carreraRepositorio;
     }
 
+    //Mapeo
+    public List<CoordinadorDTO> getAllCoordinadores() {
+        return coordinadorRepositorio.findAll().stream()
+                .map(this::convertToDTO)
+                .collect(Collectors.toList());
+    }
+
     // Obtener todos los coordinadores
-    public List<Coordinador> getAllCoordinadores() {
-        return coordinadorRepositorio.findAll();
+    private CoordinadorDTO convertToDTO(Coordinador coordinador) {
+        CoordinadorDTO dto = new CoordinadorDTO();
+        dto.setUuid(coordinador.getUuid());
+        dto.setNombre(coordinador.getNombre());
+        dto.setApellido(coordinador.getApellido());
+        if (coordinador.getCarrera() != null) {
+            dto.setCarreraNombre(coordinador.getCarrera().getNombre());
+        }
+        return dto;
     }
 
     // Obtener un coordinador por ID

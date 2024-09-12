@@ -1,4 +1,4 @@
-package com.alegre.becerra.benitez.student.system.alumno;
+package com.alegre.becerra.benitez.student.system.DTO;
 
 import com.alegre.becerra.benitez.student.system.carrera.Carrera;
 import com.alegre.becerra.benitez.student.system.estado.actual.EstadoActual;

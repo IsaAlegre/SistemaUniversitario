@@ -1,5 +1,6 @@
 package com.alegre.becerra.benitez.student.system.carrera;
 
+import com.alegre.becerra.benitez.student.system.DTO.CarreraDTO;
 import com.alegre.becerra.benitez.student.system.materia.Materia;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -22,8 +23,9 @@ public class CarreraController {
 
     // Obtener todas las carreras
     @GetMapping
-    public List<Carrera> getAllCarreras() {
-        return carreraService.getAllCarreras();
+    public ResponseEntity<List<CarreraDTO>> getCarreras() {
+        List<CarreraDTO> carreras = carreraService.getAllCarreras();
+        return ResponseEntity.ok(carreras);
     }
 
     // Obtener una carrera por ID

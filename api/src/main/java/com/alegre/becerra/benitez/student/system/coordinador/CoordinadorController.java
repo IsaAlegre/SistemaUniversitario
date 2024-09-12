@@ -1,5 +1,6 @@
 package com.alegre.becerra.benitez.student.system.coordinador;
 
+import com.alegre.becerra.benitez.student.system.DTO.CoordinadorDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,8 +22,9 @@ public class CoordinadorController {
 
     // Obtener todos los coordinadores
     @GetMapping
-    public List<Coordinador> getAllCoordinadores() {
-        return coordinadorService.getAllCoordinadores();
+    public ResponseEntity<List<CoordinadorDTO>> getCoordinadores() {
+        List<CoordinadorDTO> coordinadores = coordinadorService.getAllCoordinadores();
+        return ResponseEntity.ok(coordinadores);
     }
 
     // Obtener un coordinador por ID

@@ -1,5 +1,6 @@
 package com.alegre.becerra.benitez.student.system.alumno;
 
+import com.alegre.becerra.benitez.student.system.DTO.AlumnoDTO;
 import com.alegre.becerra.benitez.student.system.carrera.Carrera;
 import com.alegre.becerra.benitez.student.system.carrera.CarreraRepositorio;
 import com.alegre.becerra.benitez.student.system.estado.actual.EstadoActual;
