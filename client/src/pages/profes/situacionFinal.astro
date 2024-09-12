@@ -4,12 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Situación Final - Sistema Universitario</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        .hidden {
-            display: none;
-        }
-    </style>
+
 </head>
 <body class="bg-gradient-to-b from-blue-900 to-purple-600 min-h-screen flex justify-center items-center relative tracking-widest">
 
@@ -37,112 +32,6 @@
         </form>
     </div>
 
-    <script>
-        // Datos de ejemplo (deberías reemplazar esto con datos reales de un servidor o base de datos)
-        const situaciones = {
-            0: [
-                { alumno: 'Juan Pérez', situacion: 'Regular' },
-                { alumno: 'Ana Gómez', situacion: 'Libre' }
-            ],
-            1: [
-                { alumno: 'Luis Fernández', situacion: 'Promocionado' },
-                { alumno: 'María López', situacion: 'Regular' }
-            ],
-            2: [
-                { alumno: 'Carlos Martín', situacion: 'Libre' },
-                { alumno: 'Laura Díaz', situacion: 'Promocionado' }
-            ]
-        };
 
-        // Función para cargar la situación final
-        function cargarSituacion() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const materiaIndex = urlParams.get('materia');
-
-            if (materiaIndex !== null && situaciones[materiaIndex]) {
-                const tableBody = document.getElementById('situacion-table-body');
-                tableBody.innerHTML = '';
-
-                situaciones[materiaIndex].forEach(situacion => {
-                    const row = document.createElement('tr');
-                    row.innerHTML = `
-                        <td class="p-3 text-center">${situacion.alumno}</td>
-                        <td class="p-3 text-center">
-                            <div class="situacion-container">
-                                <select class="situacion_final w-60px p-2 rounded text-black">
-                                    <option value="">Selecciona una situación</option>
-                                    <option value="Regular" ${situacion.situacion === 'Regular' ? 'selected' : ''}>Regular</option>
-                                    <option value="Libre" ${situacion.situacion === 'Libre' ? 'selected' : ''}>Libre</option>
-                                    <option value="Promocionado" ${situacion.situacion === 'Promocionado' ? 'selected' : ''}>Promocionado</option>
-                                </select>
-                                <span class="situacion-text hidden">${situacion.situacion}</span>
-                            </div>
-                        </td>
-                        <td class="p-3 text-center">
-                            <button type="button" class="guardar-btn bg-blue-500 text-white py-2 px-4 rounded-lg">Guardar Situación</button>
-                            <button type="button" class="modificar-btn bg-green-500 text-white py-2 px-4 rounded-lg mt-2 hidden">Modificar Situación</button>
-                        </td>
-                    `;
-                    tableBody.appendChild(row);
-                });
-
-                // Asignar eventos a los botones después de insertar las filas
-                document.querySelectorAll('.guardar-btn').forEach(btn => {
-                    btn.addEventListener('click', function() {
-                        guardarSituacion(this);
-                    });
-                });
-
-                document.querySelectorAll('.modificar-btn').forEach(btn => {
-                    btn.addEventListener('click', function() {
-                        modificarSituacion(this);
-                    });
-                });
-            }
-        }
-
-        // Función para guardar la situación
-        function guardarSituacion(btn) {
-            var fila = btn.closest('tr');
-            var situacionSelect = fila.querySelector('.situacion_final');
-            var situacionValor = situacionSelect.value;
-
-            if (situacionValor === "") {
-                alert('Por favor, selecciona una situación.');
-                return;
-            }
-
-            var tdSituacion = fila.querySelector('.situacion-text');
-            var situacionContainer = fila.querySelector('.situacion-container');
-
-            // Actualiza el texto de la situación y oculta el select
-            tdSituacion.textContent = situacionValor;
-            situacionContainer.querySelector('.situacion_final').classList.add('hidden');
-            tdSituacion.classList.remove('hidden');
-
-            // Muestra el botón de modificar y oculta el botón de guardar
-            fila.querySelector('.guardar-btn').classList.add('hidden');
-            fila.querySelector('.modificar-btn').classList.remove('hidden');
-        }
-
-        // Función para modificar la situación
-        function modificarSituacion(btn) {
-            var fila = btn.closest('tr');
-            var situacionText = fila.querySelector('.situacion-text').textContent;
-            var situacionSelect = fila.querySelector('.situacion_final');
-
-            // Restaura el valor del select y muestra el select
-            situacionSelect.value = situacionText;
-            fila.querySelector('.situacion-text').classList.add('hidden');
-            situacionSelect.classList.remove('hidden');
-
-            // Muestra el botón de guardar y oculta el botón de modificar
-            fila.querySelector('.guardar-btn').classList.remove('hidden');
-            fila.querySelector('.modificar-btn').classList.add('hidden');
-        }
-
-        // Cargar la situación final cuando el documento esté listo
-        document.addEventListener('DOMContentLoaded', cargarSituacion);
-    </script>
 </body>
 </html>

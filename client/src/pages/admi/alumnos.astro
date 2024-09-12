@@ -1,93 +1,88 @@
 ---
-import axios from "axios";
-
-const API_LINK = "http://localhost:8080";
-// Simula algunos datos de alumnos
-const alumnos = [
-  {
-    dni: "12345678",
-    nombre: "Juan",
-    apellido: "Pérez",
-    fechaDeNacimiento: "2000-01-01",
-    carrera: "Ingeniería",
-    estado: "regular"
-  },
-  {
-    dni: "87654321",
-    nombre: "María",
-    apellido: "García",
-    fechaDeNacimiento: "1999-05-15",
-    carrera: "Medicina",
-    estado: "promocionado"
-  }
-];
-//obtiene la lista de alummnos
-const getAllUsers = async () => {
-    try {
-    const response = await axios.get(`${API_LINK}/api/v1/alumnos`);
-         return response.data;
-    } catch (e) {
-       console.error("Error:", e.message);
-               return [];
-    }
-};
-const createUser = async (dataToSend) => {
-        try {
-            const response = await axios.post(`${API_LINK}/api/v1/alumnos`, dataToSend);
-            return response.data;
-        } catch (e) {
-            console.error("Error: ", e.message)
-        }
-
-};
+import { obtenerTodosLosAlumnos } from "../../request";
+import { actualizarAlumno } from "../../request";
+import { eliminarAlumno } from "../../request";
+const alumnos = await obtenerTodosLosAlumnos();
+const actualizar = await actualizarAlumno();
+const eliminar = await eliminarAlumno();
 ---
+
 <html lang="es">
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Matricular Alumno</title>
   </head>
-  <body class="bg-gradient-to-b from-gray-900 to-gray-700 min-h-screen flex items-center justify-center">
+  <body
+    class="bg-gradient-to-b from-gray-900 to-gray-700 min-h-screen flex items-center justify-center"
+  >
     <div class="flex flex-col items-center w-full">
+      <div class="text-white absolute top-10 left-10">
+        <h1 class="text-4xl font-light tracking-widest">
+          SISTEMA UNIVERSITARIO
+        </h1>
+      </div>
+      <div class="text-white absolute top-10 right-10">
+        <h1 class="text-4xl font-light tracking-widest">
+          SISTEMA ADMINISTRADOR
+        </h1>
+      </div>
+      <div
+        class="bg-gradient-to-b from-gray-700 to-gray-900 text-white rounded-lg p-8 shadow-lg w-2/3 mx-auto"
+      >
+        <h2 class="text-2xl font-semibold mb-4 text-center">
+          LISTA DE ALUMNOS
+        </h2>
+        <table class="w-full table-auto border-collapse bg-gray-800 text-white">
+          <thead>
+            <tr>
+              <th class="border border-gray-600 px-4 py-2">DNI</th>
+              <th class="border border-gray-600 px-4 py-2">Nombre</th>
+              <th class="border border-gray-600 px-4 py-2">Apellido</th>
+              <th class="border border-gray-600 px-4 py-2">Fecha de Nacimiento</th>
+              <th class="border border-gray-600 px-4 py-2">Carrera</th>
+              <th class="border border-gray-600 px-4 py-2">Condición</th>
+              <th class="border border-gray-600 px-4 py-2">Acciones</th>
+            </tr>
+          </thead>
+          <tbody id="alumnosBody">
+            ${alumnos.map((alumno) => `
+              <tr>
+                <td class="border border-gray-600 px-4 py-2">${alumno.dni}</td>
+                <td class="border border-gray-600 px-4 py-2">${alumno.nombre}</td>
+                <td class="border border-gray-600 px-4 py-2">${alumno.apellido}</td>
+                <td class="border border-gray-600 px-4 py-2">${alumno.fechaDeNacimiento}</td>
+                <td class="border border-gray-600 px-4 py-2">${alumno.carrera}</td>
+                <td class="border border-gray-600 px-4 py-2">${alumno.estado}</td>
+                <td class="border border-gray-600 px-4 py-2">
+                  <button onclick="handleEditar(${JSON.stringify(alumno)})" class="bg-blue-500 px-2 py-1 rounded text-white">Editar</button>
+                  <button onclick="handleEliminar(${alumno.dni})" class="bg-red-500 px-2 py-1 rounded text-white">Eliminar</button>
+                </td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
+      </div>
+    </div>
 
-        <div class="text-white absolute top-10 left-10">
-            <h1 class="text-4xl font-light tracking-widest">SISTEMA UNIVERSITARIO</h1>
-          </div>
-         <div class="text-white absolute top-10 right-10">
-            <h1 class="text-4xl font-light tracking-widest">SISTEMA ADMINISTRADOR</h1>
-          </div>
-          <div class="bg-gradient-to-b from-gray-700 to-gray-900 text-white rounded-lg p-8 shadow-lg w-2/3 mx-auto">
-            <h2 class="text-2xl font-semibold mb-4 text-center">LISTA DE ALUMNOS</h2>
-            <table class="w-full table-auto border-collapse bg-gray-800 text-white">
-              <thead>
-                <tr>
-                  <th class="border border-gray-600 px-4 py-2">DNI</th>
-                  <th class="border border-gray-600 px-4 py-2">Nombre</th>
-                  <th class="border border-gray-600 px-4 py-2">Apellido</th>
-                  <th class="border border-gray-600 px-4 py-2">fecha de Nacimiento</th>
-                  <th class="border border-gray-600 px-4 py-2">Carrera</th>
-                   <th class="border border-gray-600 px-4 py-2">Condicion</th>
-                </tr>
-
-              </thead>
-              <tbody id="alumnosBody">
-                 {alumnos?.map((alumno) => (
-
-                <tr key={alumno.dni}>
-                  <td class="border border-gray-600 px-4 py-2">{alumno.dni}</td>
-                  <td class="border border-gray-600 px-4 py-2">{alumno.nombre}</td>
-                  <td class="border border-gray-600 px-4 py-2">{alumno.apellido}</td>
-                  <td class="border border-gray-600 px-4 py-2">{alumno.fechaDeNacimiento}</td>
-                  <td class="border border-gray-600 px-4 py-2">{alumno.carrera}</td>
-                  <td class="border border-gray-600 px-4 py-2">{alumno.estado}</td>
-                </tr>
-               ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
-
-
+    <!-- Formulario de edición -->
+    <div id="formularioEdicion" style="display: none;">
+      <form onsubmit="handleActualizar(event)" class="bg-gray-800 p-4 rounded-lg text-white">
+        <h2 class="text-2xl font-semibold mb-4">Editar Alumno</h2>
+        <input type="hidden" id="dni" />
+        <label for="nombre">Nombre</label>
+        <input type="text" id="nombre" class="bg-gray-700 p-2 rounded mb-2 w-full" />
+        <label for="apellido">Apellido</label>
+        <input type="text" id="apellido" class="bg-gray-700 p-2 rounded mb-2 w-full" />
+        <label for="fechaDeNacimiento">Fecha de Nacimiento</label>
+        <input type="date" id="fechaDeNacimiento" class="bg-gray-700 p-2 rounded mb-2 w-full" />
+        <label for="carrera">Carrera</label>
+        <input type="text" id="carrera" class="bg-gray-700 p-2 rounded mb-2 w-full" />
+        <label for="estado">Estado</label>
+        <input type="text" id="estado" class="bg-gray-700 p-2 rounded mb-2 w-full" />
+        <button type="submit" class="bg-green-500 px-4 py-2 rounded">Guardar cambios</button>
+        <button type="button" onclick="document.getElementById('formularioEdicion').style.display='none'" class="bg-gray-500 px-4 py-2 rounded">Cancelar</button>
+      </form>
+    </div>
   </body>
-  </html>
-
+</html>

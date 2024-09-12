@@ -1,4 +1,8 @@
 ---
+import { crearAlumno } from "../../request"
+import { obtenerTodosLosAlumnos } from "../../request";
+const listaAlumno =await obtenerTodosLosAlumnos();
+const crearAlumnos = await crearAlumno();
 ---
 <html lang="es">
   <head>
@@ -20,23 +24,23 @@
         <form class="space-y-4">
           <div>
             <label class="block text-sm font-medium text-gray-700">Nombre:</label>
-            <input type="text" class="w-full border border-gray-300 p-2 rounded-md" placeholder="Nombre">
+            <input type="text" id="nonmbre" class="w-full border border-gray-300 p-2 rounded-md" placeholder="Nombre">
           </div>
           <div>
             <label class="block text-sm font-medium text-gray-700">Apellido:</label>
-            <input type="text" class="w-full border border-gray-300 p-2 rounded-md" placeholder="Apellido">
+            <input type="text" id="apellido" class="w-full border border-gray-300 p-2 rounded-md" placeholder="Apellido">
           </div>
           <div>
             <label class="block text-sm font-medium text-gray-700">Nro de legajo:</label>
-            <input type="text" class="w-full border border-gray-300 p-2 rounded-md" placeholder="Nro de legajo">
+            <input type="text" id="legajo" class="w-full border border-gray-300 p-2 rounded-md" placeholder="Nro de legajo">
           </div>
           <div>
             <label class="block text-sm font-medium text-gray-700">Dni:</label>
-            <input type="text" class="w-full border border-gray-300 p-2 rounded-md" placeholder="Dni">
+            <input type="text" id="dni" class="w-full border border-gray-300 p-2 rounded-md" placeholder="Dni">
           </div>
           <div>
             <label class="block text-sm font-medium text-gray-700">Carrera:</label>
-            <input type="text" class="w-full border border-gray-300 p-2 rounded-md" placeholder="Carrera">
+            <input type="text" id="carrera" class="w-full border border-gray-300 p-2 rounded-md" placeholder="Carrera">
           </div>
           <div class="flex space-x-4">
             <button type="submit" class="bg-blue-600 text-white py-2 px-4 rounded mt-4 hover:bg-blue-700 transition duration-300 ease-in-out">
